@@ -242,7 +242,7 @@ endif
 " error window automatically open or closed:
 let g:syntastic_auto_loc_list=1
 
-let g:syntastic_python_pep8_args='--ignore=E501,E121,W191,E201,E202,E122,E123'
+let g:syntastic_python_pep8_args='--ignore=E501,E121,W191,E201,E202,E122,E123,E126'
 
 
 "
