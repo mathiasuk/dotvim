@@ -21,8 +21,7 @@ if has("autocmd")
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 endif
 
-" For security reason:
-set modelines=0
+set modelines=5
 
 " Set tabs to 4 spaces:
 set tabstop=4
@@ -248,9 +247,21 @@ let g:syntastic_python_pep8_args='--ignore=E501,E121,W191,E201,E202,E122,E123,E1
 "
 let g:syntastic_aggregate_errors=1
 let g:syntastic_python_checkers=['pylint', 'pep8']
+let g:syntastic_javascript_checkers=['jsl']
 
 
 nnoremap <leader><tab> :lnext<cr>
 
 vnoremap <leader>a :EasyAlign<Enter>
 
+" CtrlP
+let g:ctrlp_map = '<leader>o'
+let g:ctrlp_working_path_mode = 'ra'
+set wildignore+=*.pyc,*.swp,*.zip
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+
+" Jedi-vim
+let g:jedi#popup_on_dot = 0
+
+" Open new cursor on the right
+set splitright
