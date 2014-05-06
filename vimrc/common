@@ -1,3 +1,5 @@
+" vim: syntax=vim
+
 "Use Vim settings, rather then Vi settings (much better!).
 "This must be first, because it changes other options as a side effect.
 set nocompatible
@@ -77,7 +79,7 @@ nnoremap ' `
 nnoremap ` '
 
 " Set the leader to ,
-let mapleader = ","
+let mapleader = "\<Space>"
 
 " Set search options:
 set ignorecase
@@ -240,11 +242,7 @@ endif
 
 " error window automatically open or closed:
 let g:syntastic_auto_loc_list=1
-
 let g:syntastic_python_pep8_args='--ignore=E501,E121,W191,E201,E202,E122,E123,E126'
-
-
-"
 let g:syntastic_aggregate_errors=1
 let g:syntastic_python_checkers=['pylint', 'pep8']
 let g:syntastic_javascript_checkers=['jsl']
@@ -277,4 +275,4 @@ let g:airline#extensions#tabline#enabled = 0
 let g:airline#extensions#tabline#tab_nr_type = 1
 let g:airline#extensions#tabline#show_tab_nr = 1
 let g:airline_section_c = '%<%F%m %#__accent_red#%{airline#util#wrap(airline#parts#readonly(),0)}%#__restore__#'
-
+let g:airline_powerline_fonts = 1
