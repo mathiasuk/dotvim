@@ -6,6 +6,7 @@ set nocompatible
 
 " Load pathogen
 execute pathogen#infect()
+filetype plugin indent on
 
 " Enable syntax hightlighting
 syntax on
@@ -122,8 +123,8 @@ highlight NonText cterm=None ctermfg=0
 highlight SpecialKey cterm=None ctermfg=0 
 highlight Search ctermbg=DarkYellow ctermfg=Black
 
-set backupdir=~/.vim/backup/
-set directory=~/.vim/backup/
+set backupdir=~/.vimbackup/
+set directory=~/.vimbackup/
 
 " NERD_tree config
 let NERDTreeChDirMode=2
@@ -156,7 +157,7 @@ nnoremap <F6> :set spell!<CR>
 if version >= 700
     " Allow to undo after close/re-open a file:
     set undofile
-    set undodir=~/.vim/undo/
+    set undodir=~/.vimundo/
     "    nnoremap <F2> :set norelativenumber!<CR>:call ToggleFoldColumn()<CR>
 endif
 nnoremap <F2> :set nonumber!<CR>:call ToggleFoldColumn()<CR>
@@ -174,7 +175,7 @@ function! ToggleMouse()
 endfunction
 
 " Remap sparkup:
-let sparkupExecuteMapping = '<c-h>'
+"let sparkupExecuteMapping = '<c-h>'
 
 function! CleverTab()
   if pumvisible()
@@ -219,6 +220,10 @@ highlight PmenuSbar ctermbg=0
 " map <F5> :TlistToggle<cr>
 nmap <F5> :TagbarToggle<CR>
 
+" Tagbar
+
+let g:tagbar_foldlevel = 0
+
 
 " Easymotion:
 let g:EasyMotion_leader_key = '<Leader>' 
@@ -241,10 +246,10 @@ endif
 " syntastic
 " error window automatically open or closed:
 let g:syntastic_auto_loc_list=1
-let g:syntastic_python_pep8_args='--ignore=E501,E121,W191,E201,E202,E122,E123,E126'
+let g:syntastic_python_pep8_args='--ignore=E501,E121,W191,E201,E202,E122,E123,E126,E128,E101'
 let g:syntastic_aggregate_errors=1
 let g:syntastic_python_checkers=['pylint', 'pep8']
-let g:syntastic_javascript_checkers=['jsl']
+let g:syntastic_javascript_checkers=['jsxhint']
 
 
 nnoremap <leader><tab> :lnext<cr>
@@ -276,3 +281,10 @@ let g:airline#extensions#tabline#enabled = 0
 let g:airline#extensions#tabline#tab_nr_type = 1
 let g:airline#extensions#tabline#show_tab_nr = 1
 let g:airline_section_c = '%<%F%m %#__accent_red#%{airline#util#wrap(airline#parts#readonly(),0)}%#__restore__#'
+
+au BufNewFile,BufRead *.html set filetype=htmldjango
+
+
+nnoremap <leader><space> :noh<cr>
+
+nnoremap <leader>s :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
