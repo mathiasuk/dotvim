@@ -123,8 +123,8 @@ highlight NonText cterm=None ctermfg=0
 highlight SpecialKey cterm=None ctermfg=0 
 highlight Search ctermbg=DarkYellow ctermfg=Black
 
-set backupdir=~/.vimbackup/
-set directory=~/.vimbackup/
+set backupdir=~/.vimbackup//
+set directory=~/.vimbackup//
 
 " NERD_tree config
 let NERDTreeChDirMode=2
