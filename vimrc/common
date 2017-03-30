@@ -68,6 +68,7 @@ set tabpagemax=30
 " current directory is always matching the
 " content of the active window
 set autochdir
+autocmd BufEnter * silent! lcd %:p:h
 
 " printing stuff
 set pdev=pacol165
@@ -111,7 +112,7 @@ set history=1000
 " have the h and l cursor keys wrap between lines (like <Space> and <BkSpc> do
 " by default), and ~ covert case over line breaks; also have the cursor keys
 " wrap in insert mode:
-set whichwrap=h,l,~,[,]
+set whichwrap=h,l,~
 
 " Show hidden characters
 "set list
@@ -119,8 +120,8 @@ set listchars=tab:▸\ ,eol:¬
 " Shortcut to rapidly toggle `set list`
 nmap <leader>l :set list!<CR>
 " Set dark colors to tabs and eol chars:
-highlight NonText cterm=None ctermfg=0 
-highlight SpecialKey cterm=None ctermfg=0 
+highlight NonText cterm=None ctermfg=0
+highlight SpecialKey cterm=None ctermfg=0
 highlight Search ctermbg=DarkYellow ctermfg=Black
 
 set backupdir=~/.vimbackup//
@@ -146,13 +147,13 @@ nnoremap <F7> :GundoToggle<CR>
 " Map set paste
 set pastetoggle=<F4>
 " Toggle line number and folcolumn
-function ToggleFoldColumn() 
-   if &foldcolumn == 0 
-     set foldcolumn=1 
-   else 
-     set foldcolumn=0 
-   endif 
-endfunction 
+function ToggleFoldColumn()
+   if &foldcolumn == 0
+     set foldcolumn=1
+   else
+     set foldcolumn=0
+   endif
+endfunction
 nnoremap <F6> :set spell!<CR>
 if version >= 700
     " Allow to undo after close/re-open a file:
@@ -193,7 +194,7 @@ inoremap <Tab> <C-R>=CleverTab()<CR>
 
 " Automatically close the scratch buffer with omnicomplete
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif
-autocmd CursorMovedI * if pumvisible() == 0|pclose|endif 
+autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
 " Set max sixie for scratch buffer:
 set previewheight=6
 
@@ -226,7 +227,7 @@ let g:tagbar_foldlevel = 0
 
 
 " Easymotion:
-let g:EasyMotion_leader_key = '<Leader>' 
+let g:EasyMotion_leader_key = '<Leader>'
 "let EasyMotion_keys = 'abcdefghijklmnopqrstuvwxyz'
 hi link EasyMotionTarget ErrorMsg
 hi link EasyMotionShade  Comment
@@ -246,10 +247,13 @@ endif
 " syntastic
 " error window automatically open or closed:
 let g:syntastic_auto_loc_list=1
-let g:syntastic_python_pep8_args='--ignore=E501,E121,W191,E201,E202,E122,E123,E126,E128,E101'
+let g:syntastic_python_pep8_args='--ignore=E501,E121,W191,E201,E202,E122,E123,E126,E128,E101,E265,E402'
+let g:syntastic_python_pylint_args='--disable=C0330'
 let g:syntastic_aggregate_errors=1
 let g:syntastic_python_checkers=['pylint', 'pep8']
-let g:syntastic_javascript_checkers=['jsxhint']
+let g:syntastic_javascript_checkers=['eslint']
+"let g:syntastic_debug = 1
+let g:syntastic_javascript_eslint_exec = '/home/mandre/.npm-global/bin/eslint'
 
 
 nnoremap <leader><tab> :lnext<cr>
@@ -270,7 +274,7 @@ let g:jedi#show_call_signatures = 0
 set splitright
 
 " vim-airline
-let g:airline_inactive_collapse=0                                            
+let g:airline_inactive_collapse=0
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#branch#enabled = 1
 "let g:airline#extensions#branch#use_vcscommand = 1
@@ -283,8 +287,12 @@ let g:airline#extensions#tabline#show_tab_nr = 1
 let g:airline_section_c = '%<%F%m %#__accent_red#%{airline#util#wrap(airline#parts#readonly(),0)}%#__restore__#'
 
 au BufNewFile,BufRead *.html set filetype=htmldjango
+au BufNewFile,BufRead *.es6 set filetype=javascript
 
 
 nnoremap <leader><space> :noh<cr>
 
 nnoremap <leader>s :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
+
+" Remove whitespaces on save
+autocmd BufWritePre * :%s/\s\+$//e
