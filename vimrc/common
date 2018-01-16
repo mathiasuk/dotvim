@@ -99,6 +99,9 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
+" Map clear screen
+nnoremap <leader><C-l> :redraw!<CR>
+
 set wrap
 set textwidth=79
 set formatoptions=qrn1
@@ -143,6 +146,7 @@ let NERDSpaceDelims=1
 
 " gundo.vim config
 nnoremap <F7> :GundoToggle<CR>
+let g:gundo_prefer_python3 = 1
 
 " Map set paste
 set pastetoggle=<F4>
@@ -296,3 +300,6 @@ nnoremap <leader>s :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
 
 " Remove whitespaces on save
 autocmd BufWritePre * :%s/\s\+$//e
+
+" Nerdcommenter
+let g:NERDDefaultAlign = 'left'
