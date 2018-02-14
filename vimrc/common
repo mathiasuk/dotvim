@@ -80,9 +80,6 @@ set printfont=courier:h8
 nnoremap ' `
 nnoremap ` '
 
-" Set the leader to ,
-let mapleader = "\<Space>"
-
 " Set search options:
 set ignorecase
 set smartcase
@@ -90,17 +87,12 @@ set gdefault
 set incsearch
 set showmatch
 set hlsearch
-" Mapping to lear current search highlights
-nnoremap <leader><space> :noh<cr>
 
 " Mapping for changing windows:
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
-
-" Map clear screen
-nnoremap <leader><C-l> :redraw!<CR>
 
 set wrap
 set textwidth=79
@@ -120,8 +112,6 @@ set whichwrap=h,l,~
 " Show hidden characters
 "set list
 set listchars=tab:▸\ ,eol:¬
-" Shortcut to rapidly toggle `set list`
-nmap <leader>l :set list!<CR>
 " Set dark colors to tabs and eol chars:
 highlight NonText cterm=None ctermfg=0
 highlight SpecialKey cterm=None ctermfg=0
@@ -231,10 +221,10 @@ let g:tagbar_foldlevel = 0
 
 
 " Easymotion:
-let g:EasyMotion_leader_key = '<Leader>'
+"let g:EasyMotion_leader_key = '<Leader>'
 "let EasyMotion_keys = 'abcdefghijklmnopqrstuvwxyz'
-hi link EasyMotionTarget ErrorMsg
-hi link EasyMotionShade  Comment
+"hi link EasyMotionTarget ErrorMsg
+"hi link EasyMotionShade  Comment
 
 set novisualbell
 
@@ -259,8 +249,6 @@ let g:syntastic_javascript_checkers=['eslint']
 "let g:syntastic_debug = 1
 let g:syntastic_javascript_eslint_exec = '/home/mandre/.npm-global/bin/eslint'
 
-
-nnoremap <leader><tab> :lnext<cr>
 
 vnoremap <leader>a :EasyAlign<Enter>
 
@@ -294,12 +282,32 @@ au BufNewFile,BufRead *.html set filetype=htmldjango
 au BufNewFile,BufRead *.es6 set filetype=javascript
 
 
-nnoremap <leader><space> :noh<cr>
-
-nnoremap <leader>s :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
+"nnoremap <leader>s :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
 
 " Remove whitespaces on save
 autocmd BufWritePre * :%s/\s\+$//e
 
 " Nerdcommenter
 let g:NERDDefaultAlign = 'left'
+
+
+"""""""""""""""""
+" Custom bindings
+
+" Set the leader to ,
+let mapleader = "\<Space>"
+
+" Mapping to lear current search highlights
+nnoremap <leader><space> :noh<cr>
+
+" Map clear screen
+nnoremap <leader><C-l> :redraw!<CR>
+
+" Shortcut to rapidly toggle `set list`
+nmap <leader>l :set list!<CR>
+
+nnoremap <leader><tab> :lnext<cr>
+
+nnoremap <leader>" :split<cr>
+nnoremap <leader>% :vsplit<cr>
+nnoremap <leader>t :tabnew
